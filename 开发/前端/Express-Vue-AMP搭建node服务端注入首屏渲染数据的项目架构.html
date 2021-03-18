@@ -222,11 +222,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/node/">node</a>&nbsp;
+                        | <a href="/tags/express/">express</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/express/">express</a>&nbsp;
+                        | <a href="/tags/node/">node</a>&nbsp;
                     </li>
                 
                     <li>
@@ -313,8 +313,8 @@
 <h3 id="Node服务端动态注入SEO相关数据到Html"><a href="#Node服务端动态注入SEO相关数据到Html" class="headerlink" title="Node服务端动态注入SEO相关数据到Html"></a>Node服务端动态注入SEO相关数据到Html</h3><p>大家都知道一个单页面应用的问题，就是不利于SEO搜索引擎的爬虫抓取对应路由页面的内容。因为单页面应用多个路由都是同一个HTML源码，根据前端js路由渲染不同页面内容。所有这个时候要优化ESO其实有多种方案。<br>跟多方案，请参考我之前的博客<a href="https://www.patpat.site/%E5%BC%80%E5%8F%91/VueJs%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8SEO%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/cjzeb0o7c001a5ifyu664lfwk/">VueJs单页面应用SEO解决方案</a><br>目前项目用的是node服务端注入动态SEO相关参数的方案。<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/Express+Vue&AMP.png"
-                      alt="Express+Vue_AMP"
+                     data-src="https://cdn.patpat.site/mweb/Express+Vue+AMP.png"
+                      alt="Express+Vue+AMP"
                 ></p>
 <p>可以看到上项目架构思维导图的 Express核心控制器及中间—&gt;Vue打包静态资源的部分, 这个关系里面就是在node服务请求到页面内容数据，并把SEO相关参数通过Ejs或其他html模板语法注入到即将to浏览器的HTML(在Vue打包的.html文件的基础上注入)里面。</p>
 <h3 id="Node服务端预取首屏渲染所需业务数据"><a href="#Node服务端预取首屏渲染所需业务数据" class="headerlink" title="Node服务端预取首屏渲染所需业务数据"></a>Node服务端预取首屏渲染所需业务数据</h3><p>单页面应用一般在主静态框架渲染完需要对不同的页面在浏览器端请求API异步拿到数据后再渲染内容到页面上。这个过程用户看到的体验是会有一个API请求Loading的过程。而且这个过程跟用户的网络情况有直接关系，如果页面首屏需要渲染的数据在服务端返回HTML文档的时候就直接包含在HTML源代码里面了，那前端到浏览器可以省掉请求首屏数据的API，整个速度体验可以提升1秒左右。因为在node服务端请求API拿数据不取决于用户的网络，一般服务的网络情况比较稳定，ndoe服务端还可以对请求的相同数据利用Redis或其他缓存工具进行缓存，这样在服务端请求数据的速度可以从之前的平均1000ms降低到平均10ms以内。</p>
