@@ -9,7 +9,7 @@
     
     <title>
         
-            比&#39;Vue Cli&#39;更高纬度的下一代前端工具|尤雨溪新品Vite的魔力 |
+            Vue SSR服务端渲染-SRR指南构建 |
         
         Madman 疯子
     </title>
@@ -176,7 +176,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">比&#39;Vue Cli&#39;更高纬度的下一代前端工具|尤雨溪新品Vite的魔力</span>
+            <span class="title-hover-animation">Vue SSR服务端渲染-SRR指南构建</span>
         </div>
 
         
@@ -194,7 +194,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-02-20 16:48:06
+        <i class="fas fa-edit"></i>&nbsp;2021-03-18 11:31:27
     </span>
     
         <span class="article-categories article-meta-item">
@@ -222,11 +222,7 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/vue-cli/">vue-cli</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/vite/">vite</a>&nbsp;
+                        | <a href="/tags/ssr/">ssr</a>&nbsp;
                     </li>
                 
             </ul>
@@ -236,12 +232,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>669 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>387 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
         </span>
     
     
@@ -257,75 +253,57 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现在前端cli工具已经比较成熟，而且用的也很方便，但是最近又出现了比’Vue Cli’更高纬度的下一代前端工具|尤雨溪新品Vite的魔力。<br>这些工具的出现是为了解决 ES Modules 模块系统本身的环境兼容问题、以及零散的模块文件导致的频繁网络请求发送和模块化发散的问题等等。<br>既然已经有了 Webpack，尤大再整一个 Vite 到底有啥用呢？</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前段时间对网站项目进行了大的架构重构，上线已经半年了。一直想分享Vue-SSR项目架构，但是一直在忙SSR网站的架构优化迭代。<br>首先说一下做SSR项目重构的项目目的是什么</p>
+<ol>
+<li>更全面的SEO优化</li>
+<li>网站首屏渲染性能优化</li>
+<li>项目可维护性优化</li>
+<li>项目高可用性优化<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2>我们这次选用的是Vue SSR指南自定义搭建Vue-SSR项目架构, 为啥不选用Vue开箱即用的SSR框架Nuxt?</li>
+<li>我们需要更多设置和选择的余地，Nuxt是更高级别的抽象，它为开发者做出了很多选择</li>
+<li>我们想更深度的了解SSR的工作原理</li>
+<li>Nuxt根据目录生成动态路由，让人感觉有点不自由（虽然有约束不一定是负面的）</li>
+</ol>
 <span id="more"></span>
 
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138110052185.jpg"
-                      alt="本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器（module bundler）。"
-                ></p>
-<p>Vue 脚手架工具 vue-cli 使用 webpack 进行打包，开发时可以启动本地开发服务器，实时预览。因为需要对整个项目文件进行打包，开发服务器启动缓慢。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138111670208.jpg"
-                     
-                ></p>
-<p>而对于开发时文件修改后的热更新 HMR 也存在同样的问题。<br>Webpack 的热更新会以当前修改的文件为入口重新 build 打包，所有涉及到的依赖也都会被重新加载一次。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138111910731.jpg"
-                     
-                ></p>
-<p>Vite 则很好地解决了上面的两个问题。<br><strong>先来打包问题</strong><br>vite 只启动一台静态页面的服务器，对文件代码不打包，服务器会根据客户端的请求加载不同的模块处理，实现真正的按需加载。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138112360691.jpg"
-                     
-                ></p>
-<p><strong>对于热更新问题</strong><br>vite 采用立即编译当前修改文件的办法。同时 vite 还会使用缓存机制( http 缓存 =&gt; vite 内置缓存 )，加载更新后的文件内容。<br>所以，vite 具有了<strong>快速冷启动、按需编译、模块热更新</strong>等优良特质。<br>综上所述，vite 构建项目与 vue-cli 构建的项目在开发模式下还是有比较大的区别：</p>
-<ol>
-<li>Vite 在开发模式下不需要打包可以直接运行，使用的是 ES6 的模块化加载规则；Vue-CLI 开发模式下必须对项目打包才可以运行。</li>
-<li>Vite 基于缓存的热更新，Vue-CLI 基于 Webpack 的热更新。</li>
-</ol>
-<p><strong>说了这么多，vite 到底应该怎么用呢？</strong><br>我们简单来使用一下。<br>确保 Node 版本是大于等于 12 的。<br>使用 NPM 命令：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init @vitejs/app</span><br></pre></td></tr></table></figure>
-<p>然后按照提示进行操作！<br>您还可以通过其他命令行选项直接指定项目名称和要使用的模板。例如，要搭建Vite + Vue项目，请运行：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># npm 6.x</span><br><span class="line">npm init @vitejs/app my-vue-app --template vue</span><br><span class="line"></span><br><span class="line"># npm 7+, extra double-dash is needed:</span><br><span class="line">npm init @vitejs/app my-vue-app -- --template vue</span><br><span class="line"></span><br><span class="line"># yarn</span><br><span class="line">yarn create @vitejs/app my-vue-app --template vue</span><br></pre></td></tr></table></figure>
-
-<p>支持的模板预设包括：</p>
-<ul>
-<li>vanilla</li>
-<li>vue</li>
-<li>vue-ts</li>
-<li>react</li>
-<li>react-ts</li>
-<li>preact</li>
-<li>preact-ts</li>
-<li>lit-element</li>
-<li>lit-element-ts</li>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="需要熟悉的技术栈"><a href="#需要熟悉的技术栈" class="headerlink" title="需要熟悉的技术栈"></a>需要熟悉的技术栈</h2><ul>
+<li>Node.js</li>
+<li>Vue</li>
+<li>Webpack</li>
+<li>Nginx</li>
+<li>Redis</li>
+<li>CF动态CDN</li>
 </ul>
-<p>详细查看<a class="link"   target="_blank" rel="noopener" href="https://vitejs.dev/guide/#scaffolding-your-first-vite-project" >vite官方文档<i class="fas fa-external-link-alt"></i></a></p>
-<p><img  
+<h2 id="事先阅读一遍相关文档"><a href="#事先阅读一遍相关文档" class="headerlink" title="事先阅读一遍相关文档"></a>事先阅读一遍相关文档</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ssr.vuejs.org/zh/" >Vue SSR指南<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://expressjs.com/en/guide/routing.html" >Node.js框架Express<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://nuxtjs.org/docs/2.x/get-started/installation" >Nuxt的文档<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://redisdoc.com/string/get.html" >Redis文档<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
+<li>node v10以上环境</li>
+<li>Vue-CLI前端工具</li>
+</ul>
+<h1 id="创建SSR架构项目"><a href="#创建SSR架构项目" class="headerlink" title="创建SSR架构项目"></a>创建SSR架构项目</h1><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138115837949.jpg"
-                      alt="我本地创建Vite项目截图"
+                     data-src="https://cdn.patpat.site/mweb/%E7%BD%91%E7%AB%99SSR%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%9B%BE.png"
+                      alt="网站SSR项目架构图"
                 ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138116296897.jpg"
-                      alt="我本地运行Vite项目截图"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16138110542452.jpg"
-                     
-                ></p>
+<h2 id="Vue-CLI创建项目"><a href="#Vue-CLI创建项目" class="headerlink" title="Vue-CLI创建项目"></a>Vue-CLI创建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+
+<h2 id="调整项目目录结构"><a href="#调整项目目录结构" class="headerlink" title="调整项目目录结构"></a>调整项目目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改vue-config-js配置"><a href="#修改vue-config-js配置" class="headerlink" title="修改vue.config.js配置"></a>修改vue.config.js配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+<h2 id="服务端vue-router客户端router同步"><a href="#服务端vue-router客户端router同步" class="headerlink" title="服务端vue router客户端router同步"></a>服务端vue router客户端router同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+<h2 id="Vuex-全局状态"><a href="#Vuex-全局状态" class="headerlink" title="Vuex 全局状态"></a>Vuex 全局状态</h2><h3 id="服务端vuex-store初始化以及挂载"><a href="#服务端vuex-store初始化以及挂载" class="headerlink" title="服务端vuex store初始化以及挂载"></a>服务端vuex store初始化以及挂载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端接管服务端的vuex-store并动态注册"><a href="#客户端接管服务端的vuex-store并动态注册" class="headerlink" title="客户端接管服务端的vuex store并动态注册"></a>客户端接管服务端的vuex store并动态注册</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
 
         </div>
 
@@ -333,11 +311,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：比&#39;Vue Cli&#39;更高纬度的下一代前端工具|尤雨溪新品Vite的魔力</li>
+        <li>本文标题：Vue SSR服务端渲染-SRR指南构建</li>
         <li>本文作者：Madman</li>
-        <li>创建时间：2021-02-20 16:48:06</li>
+        <li>创建时间：2021-03-18 11:31:27</li>
         <li>
-            本文链接：https://www.patpat.site/开发/前端/比Vue-Cli-更高纬度的下一代前端工具-尤雨溪新品Vite的魔力.html
+            本文链接：https://www.patpat.site/开发/前端/Vue-SSR服务端渲染-SRR指南构建.html
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -351,29 +329,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Vue-SSR%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93-SRR%E6%8C%87%E5%8D%97%E6%9E%84%E5%BB%BA.html"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Vue SSR服务端渲染-SRR指南构建</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/Ubuntu-Nginx-%E9%85%8D%E7%BD%AE%E5%85%8D%E8%B4%B9https-SSL-%E5%AE%89%E5%85%A8%E7%8E%AF%E5%A2%83.html"
+                           href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/%E6%AF%94Vue-Cli-%E6%9B%B4%E9%AB%98%E7%BA%AC%E5%BA%A6%E7%9A%84%E4%B8%8B%E4%B8%80%E4%BB%A3%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7-%E5%B0%A4%E9%9B%A8%E6%BA%AA%E6%96%B0%E5%93%81Vite%E7%9A%84%E9%AD%94%E5%8A%9B.html"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Ubuntu Nginx 配置https免费SSL证书安全环境</span>
+                                <span class="post-nav-title-item">比&#39;Vue Cli&#39;更高纬度的下一代前端工具|尤雨溪新品Vite的魔力</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -582,7 +545,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E7%86%9F%E6%82%89%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">2.1.</span> <span class="nav-text">需要熟悉的技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%85%88%E9%98%85%E8%AF%BB%E4%B8%80%E9%81%8D%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="nav-number">2.2.</span> <span class="nav-text">事先阅读一遍相关文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">2.3.</span> <span class="nav-text">环境准备</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BASSR%E6%9E%B6%E6%9E%84%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">创建SSR架构项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.1.</span> <span class="nav-text">Vue-CLI创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">调整项目目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9vue-config-js%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">修改vue.config.js配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFvue-router%E5%AE%A2%E6%88%B7%E7%AB%AFrouter%E5%90%8C%E6%AD%A5"><span class="nav-number">3.4.</span> <span class="nav-text">服务端vue router客户端router同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex-%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81"><span class="nav-number">3.5.</span> <span class="nav-text">Vuex 全局状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFvuex-store%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8C%82%E8%BD%BD"><span class="nav-number">3.5.1.</span> <span class="nav-text">服务端vuex store初始化以及挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84vuex-store%E5%B9%B6%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C"><span class="nav-number">3.5.2.</span> <span class="nav-text">客户端接管服务端的vuex store并动态注册</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
