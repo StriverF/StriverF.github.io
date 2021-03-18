@@ -85,3 +85,6 @@ keep-mobile()
   bottom: 5%;
   right: 0;
 }
+.dark-mode .desc .desc_link {
+  color: #0cc;
+}
