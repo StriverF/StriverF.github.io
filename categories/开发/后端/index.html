@@ -178,85 +178,90 @@
             <i class="fas fa-folder"></i>&nbsp;后端
         </div>
         <div class="category-post-list">
-            
-<div class="archive-list-container">
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/Ubuntu-Nginx-%E9%85%8D%E7%BD%AE%E5%85%8D%E8%B4%B9https-SSL-%E5%AE%89%E5%85%A8%E7%8E%AF%E5%A2%83.html"
-                        >Ubuntu Nginx 配置https免费SSL证书安全环境</a>
-                        <span class="article-date">02-19</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2019</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/%E8%A7%A3%E5%86%B3Ubuntu%E5%91%BD%E4%BB%A4-git-pull%E6%80%BB%E6%98%AF%E6%8F%90%E7%A4%BA%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81%E9%97%AE%E9%A2%98-Enter-passphrase-for-key-root-ssh-id-rsa.html"
-                        >解决Ubuntu命令-git pull总是提示输入密码问题(Enter passphrase for key /root/.ssh/id_rsa:)</a>
-                        <span class="article-date">03-22</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2018</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/Stripe%E6%94%AF%E4%BB%98%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%8E%A5%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88.html"
-                        >Stripe支付平台对接技术方案</a>
-                        <span class="article-date">05-28</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2017</span>
-                <span class="archive-year-post-count">[2]</span>
-            </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/Sublime-Text-3-Package%E2%80%94Control.html"
-                        >Mac Sublime Text 3 插件管理工具安装-Package Control</a>
-                        <span class="article-date">11-21</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/%E5%BC%80%E5%8F%91/%E5%90%8E%E7%AB%AF/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%82%E5%B8%B8%E7%94%B5%E8%AF%9D%E8%AD%A6%E6%8A%A5API-%E4%BA%91%E4%B9%8B%E8%AE%AF%E8%AF%AD%E9%9F%B3%E9%80%9A%E7%9F%A5API.html"
-                        >服务器异常电话警报API-云之讯语音通知API</a>
-                        <span class="article-date">11-09</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-</div>
+            $archive-year-font-size = 1.8rem;
+$archive-year-count-font-size = 1.2rem;
+$article-title-font-size = 1.2rem;
+$article-date-font-size = 1rem;
+
+.archive-list-container {
+
+  .archive-item {
+    margin-bottom: $component-spacing-value;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .archive-item-header {
+      margin-bottom: 10px;
+
+      .archive-year {
+        font-size: $archive-year-font-size;
+
+        +keep-tablet() {
+          font-size: $archive-year-font-size - 0.2rem;
+        }
+
+        color: var(--second-text-color);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+
+
+      .archive-year-post-count {
+        font-size: $archive-year-count-font-size;
+        font-weight: 500;
+        color: var(--second-text-color);
+
+        +keep-tablet() {
+          font-size: $archive-year-count-font-size * 0.9;
+        }
+      }
+
+    }
+
+
+    .article-list {
+
+      padding-left: 10px;
+
+      +keep-tablet() {
+        padding-left: 0;
+      }
+
+      .article-item {
+        font-size: 1rem;
+        margin-top: 18px;
+
+        +keep-tablet() {
+          margin-top: 16px;
+        }
+
+        +keep-mobile() {
+          margin-top: 14px;
+        }
+
+        &:hover {
+          a.article-title, .article-date {
+            color: var(--primary-color);
+          }
+        }
+
+
+        a.article-title {
+          color: var(--default-text-color);
+        }
+
+        .article-date {
+          font-size: $article-date-font-size;
+          float: right;
+        }
+      }
+    }
+  }
+}
+
+
 
         </div>
     </div>
