@@ -19,7 +19,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"www.patpat.site","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#00CCCC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"1080px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"用户压根不知道自己需要什么，直到你把它摆在他面前。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":false},"style":{"primary_color":"#00CCCC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"1080px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"用户压根不知道自己需要什么，直到你把它摆在他面前。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -222,6 +222,10 @@
                     </li>
                 
                     <li>
+                        | <a href="/tags/vue-cli/">vue-cli</a>&nbsp;
+                    </li>
+                
+                    <li>
                         | <a href="/tags/ssr/">ssr</a>&nbsp;
                     </li>
                 
@@ -232,12 +236,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>387 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>977 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -253,7 +257,8 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前段时间对网站项目进行了大的架构重构，上线已经半年了。一直想分享Vue-SSR项目架构，但是一直在忙SSR网站的架构优化迭代。<br>首先说一下做SSR项目重构的项目目的是什么</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于Vue-CLI v4版本构建的SPA项目改造成VueSSR服务端渲染项目。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前段时间对网站项目进行了大的架构重构，上线已经半年了。一直想分享Vue-SSR项目架构，但是一直在忙SSR网站的架构优化迭代。<br>首先说一下做SSR项目重构的项目目的是什么</p>
 <ol>
 <li>更全面的SEO优化</li>
 <li>网站首屏渲染性能优化</li>
@@ -284,30 +289,66 @@
 </ul>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
 <li>node v10以上环境</li>
-<li><a href="">Vue-CLI</a>前端工具</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/installation.html" >Vue-CLI<i class="fas fa-external-link-alt"></i></a>前端工具</li>
 </ul>
-<h1 id="创建SSR架构项目"><a href="#创建SSR架构项目" class="headerlink" title="创建SSR架构项目"></a>创建SSR架构项目</h1><p><img  
+<h1 id="创建SSR架构项目"><a href="#创建SSR架构项目" class="headerlink" title="创建SSR架构项目"></a>创建SSR架构项目</h1><p>下面构建的服务端渲染架构图如下图<br><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://cdn.patpat.site/mweb/%E7%BD%91%E7%AB%99SSR%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%9B%BE.png"
                       alt="网站SSR项目架构图"
                 ></p>
-<h2 id="Vue-CLI创建项目"><a href="#Vue-CLI创建项目" class="headerlink" title="Vue-CLI创建项目"></a>Vue-CLI创建项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+<h2 id="Vue-CLI创建项目"><a href="#Vue-CLI创建项目" class="headerlink" title="Vue-CLI创建项目"></a>Vue-CLI创建项目</h2><p>使用<code>vue ui</code>(项目管理界面)或者<code>vue create [options] &lt;app-name&gt;</code> Vue命令创建项目（具体Vue命令介绍使用<code>vue -h</code>命令查看）</p>
+<h3 id="Vue-ui-管理界面创建项目"><a href="#Vue-ui-管理界面创建项目" class="headerlink" title="Vue ui 管理界面创建项目"></a>Vue ui 管理界面创建项目</h3><p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue ui</span><br></pre></td></tr></table></figure>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.patpat.site/mweb/16160806486175.jpg"
+                     
+                ><br>进入<a class="link"   target="_blank" rel="noopener" href="http://localhost:8000/project/create" >http://localhost:8000/project/create<i class="fas fa-external-link-alt"></i></a> 图形界面按步骤创建项目<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.patpat.site/mweb/16160807691660.jpg"
+                     
+                ><br>选择Vue版本&amp;选择路由模式等<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.patpat.site/mweb/16160809720243.jpg"
+                     
+                ></p>
+<h3 id="Vue-命令创建项目"><a href="#Vue-命令创建项目" class="headerlink" title="Vue 命令创建项目"></a>Vue 命令创建项目</h3><p>这里就不详细介绍了，执行<code>vue create [options] &lt;app-name&gt;</code>命令根据提示选项选择需要的配置就好了。或查阅<a class="link"   target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/creating-a-project.html#vue-create" >Vue-CLI官方文档<i class="fas fa-external-link-alt"></i></a><br>创建项目有哪些可选项可通过<code>vue create --help</code>查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create --help</span><br></pre></td></tr></table></figure>
 
-<h2 id="调整项目目录结构"><a href="#调整项目目录结构" class="headerlink" title="调整项目目录结构"></a>调整项目目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create hello-world</span><br></pre></td></tr></table></figure>
 
+
+<h2 id="调整项目目录结构"><a href="#调整项目目录结构" class="headerlink" title="调整项目目录结构"></a>调整项目目录结构</h2><p>创建完项目，我们现在得到的是一个Vue单页面应用，要把他改造成服务端渲染项目根据以下步骤调整项目结构</p>
+<h3 id="在根目录下新建server目录"><a href="#在根目录下新建server目录" class="headerlink" title="在根目录下新建server目录"></a>在根目录下新建server目录</h3><h4 id="server目录功能概述"><a href="#server目录功能概述" class="headerlink" title="server目录功能概述"></a>server目录功能概述</h4><p>server主要是负责服务端相关代码的配置，包含了之前单页面<code>npm run serve</code>的本地服务器功能。<br>主要包括以下主要功能</p>
+<ol>
+<li>服务端路由分配管理</li>
+<li>服务端控制中心</li>
+<li>服务端中间件，全局参数初始化</li>
+<li>服务端开发环境热更新</li>
+<li>服务端渲染以及缓存等</li>
+</ol>
+<h4 id="在server目录下面新建目录和文件"><a href="#在server目录下面新建目录和文件" class="headerlink" title="在server目录下面新建目录和文件"></a>在server目录下面新建目录和文件</h4><p>在server目录下面新建以下文件夹和文件<br>.<br>├── controllers<br>│   └── appController.js<br>├── middlewares<br>│   └── initMiddleware.js<br>├── routes<br>│   └── index.js<br>├── render<br>│   └── index.js<br>├── tools<br>│   ├── utill.js<br>│   └── cache<br>│       ├── redisCluster.js<br>│       └── constants.js<br>├── app.js<br>└── setup-dev.js</p>
+<p>server目录截图<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.patpat.site/mweb/16161404797411.jpg"
+                     
+                ></p>
+<h3 id="调整src目录"><a href="#调整src目录" class="headerlink" title="调整src目录"></a>调整src目录</h3><p>src目录还是主要负责前端业务逻辑/页面路由/页面组件/子组件/全局状态store等<br>新增文件夹<code>template</code>,<code>utils</code>。新增文件<code>entry-client.js</code>, <code>entry-server.js</code><br>修改main.js代码，接下来很多之前spa的new Vue/new Vuex等代码都会改为函数式return<br>因为在服务端我们要 <a class="link"   target="_blank" rel="noopener" href="https://ssr.vuejs.org/zh/guide/structure.html#%E9%81%BF%E5%85%8D%E7%8A%B6%E6%80%81%E5%8D%95%E4%BE%8B" >避免状态单例（点击查看VueSSR指南文档了解更多）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="调整public目录"><a href="#调整public目录" class="headerlink" title="调整public目录"></a>调整public目录</h3><p>public目前其实没啥调整的，把你需要的静态资源放public目录就好了，唯一重要的就是要把public目录下面的index.html删掉。<br>后面在解释为啥要删掉。</p>
 <h2 id="修改vue-config-js配置"><a href="#修改vue-config-js配置" class="headerlink" title="修改vue.config.js配置"></a>修改vue.config.js配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
 <h2 id="服务端vue-router客户端router同步"><a href="#服务端vue-router客户端router同步" class="headerlink" title="服务端vue router客户端router同步"></a>服务端vue router客户端router同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖库"><a href="#安装依赖库" class="headerlink" title="安装依赖库"></a>安装依赖库</h2><p>最核心就是要选择node服务端的框架 <a class="link"   target="_blank" rel="noopener" href="http://expressjs.com/en/starter/installing.html" >Express<i class="fas fa-external-link-alt"></i></a></p>
 <h2 id="Vuex-全局状态"><a href="#Vuex-全局状态" class="headerlink" title="Vuex 全局状态"></a>Vuex 全局状态</h2><h3 id="服务端vuex-store初始化以及挂载"><a href="#服务端vuex-store初始化以及挂载" class="headerlink" title="服务端vuex store初始化以及挂载"></a>服务端vuex store初始化以及挂载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
 
 <h3 id="客户端接管服务端的vuex-store并动态注册"><a href="#客户端接管服务端的vuex-store并动态注册" class="headerlink" title="客户端接管服务端的vuex store并动态注册"></a>客户端接管服务端的vuex store并动态注册</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 待续</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
         </div>
 
         
@@ -331,6 +372,21 @@
 
         
             <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Single-spa-%E6%88%90%E7%86%9F%E7%9A%84%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Single-spa 成熟的微前端架构方案</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next">
@@ -546,7 +602,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E7%86%9F%E6%82%89%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">2.1.</span> <span class="nav-text">需要熟悉的技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%85%88%E9%98%85%E8%AF%BB%E4%B8%80%E9%81%8D%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="nav-number">2.2.</span> <span class="nav-text">事先阅读一遍相关文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-number">2.3.</span> <span class="nav-text">环境准备</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BASSR%E6%9E%B6%E6%9E%84%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">创建SSR架构项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.1.</span> <span class="nav-text">Vue-CLI创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">调整项目目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9vue-config-js%E9%85%8D%E7%BD%AE"><span class="nav-number">3.3.</span> <span class="nav-text">修改vue.config.js配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFvue-router%E5%AE%A2%E6%88%B7%E7%AB%AFrouter%E5%90%8C%E6%AD%A5"><span class="nav-number">3.4.</span> <span class="nav-text">服务端vue router客户端router同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex-%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81"><span class="nav-number">3.5.</span> <span class="nav-text">Vuex 全局状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFvuex-store%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8C%82%E8%BD%BD"><span class="nav-number">3.5.1.</span> <span class="nav-text">服务端vuex store初始化以及挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84vuex-store%E5%B9%B6%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C"><span class="nav-number">3.5.2.</span> <span class="nav-text">客户端接管服务端的vuex store并动态注册</span></a></li></ol></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-text">技术选型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E7%86%9F%E6%82%89%E7%9A%84%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-text">需要熟悉的技术栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%85%88%E9%98%85%E8%AF%BB%E4%B8%80%E9%81%8D%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="nav-text">事先阅读一遍相关文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="nav-text">环境准备</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BASSR%E6%9E%B6%E6%9E%84%E9%A1%B9%E7%9B%AE"><span class="nav-text">创建SSR架构项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-CLI%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-text">Vue-CLI创建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-ui-%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-text">Vue ui 管理界面创建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-%E5%91%BD%E4%BB%A4%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="nav-text">Vue 命令创建项目</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">调整项目目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%96%B0%E5%BB%BAserver%E7%9B%AE%E5%BD%95"><span class="nav-text">在根目录下新建server目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#server%E7%9B%AE%E5%BD%95%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0"><span class="nav-text">server目录功能概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8server%E7%9B%AE%E5%BD%95%E4%B8%8B%E9%9D%A2%E6%96%B0%E5%BB%BA%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6"><span class="nav-text">在server目录下面新建目录和文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E6%95%B4src%E7%9B%AE%E5%BD%95"><span class="nav-text">调整src目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E6%95%B4public%E7%9B%AE%E5%BD%95"><span class="nav-text">调整public目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9vue-config-js%E9%85%8D%E7%BD%AE"><span class="nav-text">修改vue.config.js配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFvue-router%E5%AE%A2%E6%88%B7%E7%AB%AFrouter%E5%90%8C%E6%AD%A5"><span class="nav-text">服务端vue router客户端router同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="nav-text">安装依赖库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vuex-%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81"><span class="nav-text">Vuex 全局状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFvuex-store%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%A5%E5%8F%8A%E6%8C%82%E8%BD%BD"><span class="nav-text">服务端vuex store初始化以及挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E7%AE%A1%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%9A%84vuex-store%E5%B9%B6%E5%8A%A8%E6%80%81%E6%B3%A8%E5%86%8C"><span class="nav-text">客户端接管服务端的vuex store并动态注册</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
     </div>
 </div>
         </aside>

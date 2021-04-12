@@ -17,7 +17,7 @@
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"www.patpat.site","root":"/","language":"zh-CN","path":"search.json"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#00CCCC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"1080px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"用户压根不知道自己需要什么，直到你把它摆在他面前。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":false},"style":{"primary_color":"#00CCCC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"1080px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"用户压根不知道自己需要什么，直到你把它摆在他面前。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
     KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
   </script>
 <meta name="generator" content="Hexo 5.4.0"></head>
@@ -232,6 +232,51 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Single-spa-%E6%88%90%E7%86%9F%E7%9A%84%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html">
+                        Single-spa 成熟的微前端架构方案
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于多个中后台系统做前后端分离，各个业务模块集合在一个项目里面开发会造成后期不好维护且容易出问题，也不方便独立部署。<br>所以需要设计一套高度解耦又聚合在一个平台方便管理的系统架构。</p>
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 12 2021 11:55:26 GMT+0800">2021-04-12</span></span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/vue/">vue</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/ios/">ios</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Single-spa-%E6%88%90%E7%86%9F%E7%9A%84%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Vue-SSR%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93-SRR%E6%8C%87%E5%8D%97%E6%9E%84%E5%BB%BA.html">
                         Vue SSR服务端渲染-SRR指南构建
                     </a>
@@ -239,7 +284,8 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前段时间对网站项目进行了大的架构重构，上线已经半年了。一直想分享Vue-SSR项目架构，但是一直在忙SSR网站的架构优化迭代。<br>首先说一下做SSR项目重构的项目目的是什么</p>
+                        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于Vue-CLI v4版本构建的SPA项目改造成VueSSR服务端渲染项目。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前段时间对网站项目进行了大的架构重构，上线已经半年了。一直想分享Vue-SSR项目架构，但是一直在忙SSR网站的架构优化迭代。<br>首先说一下做SSR项目重构的项目目的是什么</p>
 <ol>
 <li>更全面的SEO优化</li>
 <li>网站首屏渲染性能优化</li>
@@ -261,6 +307,11 @@
                         <li>
                             
                             <a href="/tags/vue/">vue</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/vue-cli/">vue-cli</a>&nbsp;
                         </li>
                     
                         <li>
@@ -714,67 +765,6 @@
     </div>
 
     <a href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Vue-Cli3%E3%80%81multi-page%E5%A4%9A%E9%A1%B5%E9%9D%A2%E3%80%81i18n%E5%A4%9A%E8%AF%AD%E8%A8%80%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E4%BC%98%E5%8C%96.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Vue-Cli2%E5%88%B0Vue-Cli3-Vue%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%8D%87%E7%BA%A7.html">
-                        Vue-Cli2到Vue-Cli3 Vue项目架构升级
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于<a class="link"   target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli/tree/v2#vue-cli--" >Vue-cli2<i class="fas fa-external-link-alt"></i></a>老板官方不维护，且不推荐使用<a class="link"   target="_blank" rel="noopener" href="https://github.com/vuejs/vue-cli/tree/v2#vue-cli--" >Vue-Cli2<i class="fas fa-external-link-alt"></i></a>版本，推荐大家使用<a class="link"   target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/installation.html" >Vue-Cli3<i class="fas fa-external-link-alt"></i></a>版本。然后我看了一下Vue-Cli3的文档，确实比之前的老版本体验好了很多。</p>
-<ol>
-<li>目录结构更清晰.</li>
-<li>弃用之前的的build文件夹的build.js和webpack.prod.conf.js</li>
-<li>使用新的<a class="link"   target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/config/" >vue.config.js<i class="fas fa-external-link-alt"></i></a>配置文件包含了之前的wepack配置项。</li>
-<li>支持插件集成和插件开发。（比如PWA这样的功能可以通过插件一键集成）</li>
-<li>可以通过 vue ui 命令运行图形化界面，在图形化界面上创建和管理项目
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue May 28 2019 11:13:12 GMT+0800">2019-05-28</span></span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/vue/">vue</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/js/">js</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/css/">css</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/vue-cli3/">vue-cli3</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Vue-Cli2%E5%88%B0Vue-Cli3-Vue%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%8D%87%E7%BA%A7.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
