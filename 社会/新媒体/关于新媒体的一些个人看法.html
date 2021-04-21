@@ -9,7 +9,7 @@
     
     <title>
         
-            Single-spa 成熟的微前端架构方案 |
+            关于新媒体的一些个人看法 |
         
         Madman 疯子
     </title>
@@ -176,7 +176,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Single-spa 成熟的微前端架构方案</span>
+            <span class="title-hover-animation">关于新媒体的一些个人看法</span>
         </div>
 
         
@@ -194,7 +194,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-04-12 11:55:26
+        <i class="fas fa-edit"></i>&nbsp;2021-04-21 15:01:19
     </span>
     
         <span class="article-categories article-meta-item">
@@ -202,11 +202,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                        <a href="/categories/%E7%A4%BE%E4%BC%9A/">社会</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                        &gt; <a href="/categories/%E7%A4%BE%E4%BC%9A/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a>&nbsp;
                     </li>
                 
             </ul>
@@ -218,15 +218,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/vue/">vue</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/singleSPA/">singleSPA</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">微前端</a>&nbsp;
+                        <a href="/tags/%E7%83%AD%E7%82%B9%E6%B5%81%E9%87%8F/">热点流量</a>&nbsp;
                     </li>
                 
             </ul>
@@ -236,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>795 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>629 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
         </span>
     
     
@@ -257,56 +249,13 @@
         
 
         <div class="article-content markdown-body">
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于多个中后台系统做前后端分离，各个业务模块集合在一个项目里面开发会造成后期不好维护且容易出问题，也不方便独立部署。<br>所以需要设计一套高度解耦又聚合在一个平台方便管理的系统架构。</p>
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>新媒体发展这么迅速，每天我也会通过互联网获取很多信息，最近看了很多相关事件，我觉得信息爆炸的时代有点点是需要解决的，第一个是原创保护问题，第二个就是信息来源的真实性。</p>
 <span id="more"></span>
 
-<h1 id="方案选项"><a href="#方案选项" class="headerlink" title="方案选项"></a>方案选项</h1><p>首先，我们整理了核心诉求，按优先级排序如下：</p>
-<ul>
-<li>希望异地开发时不同的模块能够独立开发、独立部署。</li>
-<li>各个子系统独立运行，互不影响，但允许我们在开发阶段与其他子系统进行联调。</li>
-<li>保持单页应用的体验。</li>
-<li>由于现有项目都是基于Vue技术栈开发，因此，我们的框架并不需要做到技术栈无关，只要满足Vue的项目即可。</li>
-</ul>
-<p>基于以上这些诉求，我们调研了目前市面上常用的微前端方案，最常见的方案有：</p>
-<ul>
-<li>基于Nginx的路由分发。</li>
-<li>使用Iframe将页面嵌入。</li>
-<li>single-spa成熟落地的框架。</li>
-</ul>
-<p>这些方案的优劣整理如下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16182001002838.png"
-                     
-                ></p>
-<h1 id="微前端概念理解"><a href="#微前端概念理解" class="headerlink" title="微前端概念理解"></a>微前端概念理解</h1><h2 id="微前端对比微服务"><a href="#微前端对比微服务" class="headerlink" title="微前端对比微服务"></a>微前端对比微服务</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16182001571570.png"
-                     
-                ></p>
-<h2 id="微前端整体架构"><a href="#微前端整体架构" class="headerlink" title="微前端整体架构"></a>微前端整体架构</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16182002461297.png"
-                     
-                ></p>
-<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><h2 id="安装single-spa-CLI"><a href="#安装single-spa-CLI" class="headerlink" title="安装single-spa CLI"></a>安装single-spa CLI</h2><p>官方文档 <a class="link"   target="_blank" rel="noopener" href="https://zh-hans.single-spa.js.org/docs/create-single-spa" >single-spa CLI <i class="fas fa-external-link-alt"></i></a><br>安装single-spa CLI 执行如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install --global create-single-spa</span><br><span class="line"># or</span><br><span class="line">yarn global add create-single-spa</span><br></pre></td></tr></table></figure>
-
-<h2 id="Single-spa-CLI创建主应用"><a href="#Single-spa-CLI创建主应用" class="headerlink" title="Single-spa CLI创建主应用"></a>Single-spa CLI创建主应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-single-spa</span><br></pre></td></tr></table></figure>
-<p>出现可选项选择<br>? Directory for new project (.)   // 输入项目名字<br>? Select type to generate 方向键上下选择❯ single-spa root config<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.patpat.site/mweb/16182115311305.jpg"
-                     
-                ><br>后续按自己需求选择</p>
-<h2 id="Single-spa-CLI创建微应用"><a href="#Single-spa-CLI创建微应用" class="headerlink" title="Single-spa CLI创建微应用"></a>Single-spa CLI创建微应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-single-spa --framework vue</span><br></pre></td></tr></table></figure>
-<p>要创建其他前端框架的微项目只要修改 vue 参数为 react, angular 即可<br>创建vue框架微项目前确保你的环境已经安装了 Vue-CLI, 执行命令 vue -V 确认是否安装， 如没有安装过，可点击链接查看<a class="link"   target="_blank" rel="noopener" href="https://cli.vuejs.org/zh/guide/installation.html" >Vue-CLI官方文档<i class="fas fa-external-link-alt"></i></a>自行安装</p>
-<p>执行以上命令后会有一系列选项填写，按照如下填写<br>? Directory for new project （项目名称按照这样命名方式填写 f2e-xxx）f2e-util<br>? Organization name (can use letters, numbers, dash or underscore) f2e<br>Vue CLI v4.5.11<br>┌───────────────────────────────────────────┐<br>│                                           │<br>│   New version available 4.5.11 → 4.5.12   │<br>│     Run npm i -g @vue/cli to update!      │<br>│                                           │<br>└───────────────────────────────────────────┘</p>
-<p>? Please pick a preset:（选择预设，如果有存过构建预设可以选，不确定用什么构建配置就选Manually select features。上下键控制键选择，回车确认）<br>? Check the features needed for your project:（选要用的vue框架配置，上下键控制选择，空格键勾选，回车键确认）<br>? Choose a version of Vue.js that you want to start the project with 2.x</p>
-<p>? Use history mode for router? Y<br>? Pick a CSS pre-processor (现在css预编译器，less)<br>? Pick a linter / formatter config:（为了代码规范ESLing 配置建议选 ❯ESLint + Standard config）<br>? Pick additional lint features: （为了避免提交错误代码，勾选Lint and fix on commit）<br>? Where do you prefer placing config for Babel, ESLint, etc.? （❯ In dedicated config files）<br>? Save this as a preset for future projects? （保存预设？为了方便下次新建同样配置微项目，可以选择保存预设 Y）<br>? Save preset as: （为预设取个名字方便下次选取）</p>
-<h2 id="demo源码地址"><a href="#demo源码地址" class="headerlink" title="demo源码地址"></a>demo源码地址</h2><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/microWebApp" >https://github.com/microWebApp<i class="fas fa-external-link-alt"></i></a></p>
+<h1 id="关于原创保护"><a href="#关于原创保护" class="headerlink" title="关于原创保护"></a>关于原创保护</h1><p>洗稿，假原创，有多少媒体账号的编辑是专业的？或者说有多少人是能在这个嘈杂得互联网环境中能静下心来写东西的。有多少独特立场观点的文章是真正有意义的，而不是为了获取流量。正因为洗稿在法理上完全行得通，但是在道理上完全是对原创者的不公平。所以这是一个业界难题。这一点寄希望于大厂用技术去解决这一个道理问题实在是为难搞技术的人。所以我觉得更多的只能是靠行业自律。</p>
+<h1 id="关于舆论、假新闻"><a href="#关于舆论、假新闻" class="headerlink" title="关于舆论、假新闻"></a>关于舆论、假新闻</h1><p>一本书很难在短时间内造成巨大的影响，但是很短的一篇新闻却能瞬间造成很大伤害，甚至升级成一个社会问题。老一辈人经常转发的那些标题党文章，有多少信息是正确的。这么多的信息分发平台，每个人都可以是新闻的编辑。蹭热点+标题党就是一篇互联网爆文。有多少标题党文章为了获取流量病毒式扩散到各种社交平台。</p>
+<p>这些新闻编辑者只会关注阅读量转发量点赞量。而普通用户也十分相信这些互联网爆文，人们惯性认为阅读量10w+的文章一定就是正确的，有些所谓的“新媒体人”利用人们的心理期望去写文章，不管客观真实性，只要顺着大多数人的期望观点准能出爆文。甚至可以写故意错误引导群众的假新闻，他们不会为这些文字产生的影响负责。即便短期可能不会有问题，但是可能还是会慢性影响人们的想法。</p>
+<p>新媒体的本质在于：人人都可以是生产者，人人也都是传播者。而对于用户来说，用户最大的需求就是能够获取正确的有价值的信息。让新媒体“人人”都能做到这点就需要时间了。</p>
 
         </div>
 
@@ -314,11 +263,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Single-spa 成熟的微前端架构方案</li>
+        <li>本文标题：关于新媒体的一些个人看法</li>
         <li>本文作者：Madman</li>
-        <li>创建时间：2021-04-12 11:55:26</li>
+        <li>创建时间：2021-04-21 15:01:19</li>
         <li>
-            本文链接：https://www.patpat.site/开发/前端/Single-spa-成熟的微前端架构方案.html
+            本文链接：https://www.patpat.site/社会/新媒体/关于新媒体的一些个人看法.html
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -332,29 +281,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/%E7%A4%BE%E4%BC%9A/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%85%B3%E4%BA%8E%E6%96%B0%E5%AA%92%E4%BD%93%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95.html"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">关于新媒体的一些个人看法</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Vue-SSR%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93-SRR%E6%8C%87%E5%8D%97%E6%9E%84%E5%BB%BA.html"
+                           href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/Single-spa-%E6%88%90%E7%86%9F%E7%9A%84%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Vue SSR服务端渲染-SRR指南构建</span>
+                                <span class="post-nav-title-item">Single-spa 成熟的微前端架构方案</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -561,7 +495,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E9%80%89%E9%A1%B9"><span class="nav-text">方案选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A6%82%E5%BF%B5%E7%90%86%E8%A7%A3"><span class="nav-text">微前端概念理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%AF%B9%E6%AF%94%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-text">微前端对比微服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-text">微前端整体架构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85single-spa-CLI"><span class="nav-text">安装single-spa CLI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Single-spa-CLI%E5%88%9B%E5%BB%BA%E4%B8%BB%E5%BA%94%E7%94%A8"><span class="nav-text">Single-spa CLI创建主应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Single-spa-CLI%E5%88%9B%E5%BB%BA%E5%BE%AE%E5%BA%94%E7%94%A8"><span class="nav-text">Single-spa CLI创建微应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#demo%E6%BA%90%E7%A0%81%E5%9C%B0%E5%9D%80"><span class="nav-text">demo源码地址</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%8E%9F%E5%88%9B%E4%BF%9D%E6%8A%A4"><span class="nav-text">关于原创保护</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%88%86%E8%AE%BA%E3%80%81%E5%81%87%E6%96%B0%E9%97%BB"><span class="nav-text">关于舆论、假新闻</span></a></li></ol>
     </div>
 </div>
         </aside>
