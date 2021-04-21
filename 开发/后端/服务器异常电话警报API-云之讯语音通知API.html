@@ -232,7 +232,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>364 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>365 字</span>
         </span>
     
     
@@ -268,31 +268,12 @@
 
 <p>使用</p>
 <p>.env 需要配置的参数,新增config文件 cloud_message.php 内容如下</p>
-<pre><code>return [
-
-    //注册云之讯官网，在控制台中即可获取此参数
-    &#39;account_sid&#39; =&gt;  env(&#39;CLOUD_MESSAGE_ACCOUNT_SID&#39;, &#39;&#39;),
-
-    //账户授权令牌, 在控制台中即可获取此参数
-    &#39;auth_token&#39; =&gt;  env(&#39;CLOUD_MESSAGE_AUTH_TOKEN&#39;, &#39;&#39;),
-
-    //应用id
-    &#39;app_id&#39; =&gt;  env(&#39;CLOUD_MESSAGE_APP_ID&#39;, &#39;&#39;),
-
-    //来电显示的号码（需要去申请开通号码）
-    &#39;caller&#39; =&gt; env(&#39;CLOUD_MESSAGE_CALLER&#39;, &#39;057112345678&#39;),
-
-];
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> [</span><br><span class="line">    <span class="comment">//注册云之讯官网，在控制台中即可获取此参数</span></span><br><span class="line">    <span class="string">&#x27;account_sid&#x27;</span> =&gt;  env(<span class="string">&#x27;CLOUD_MESSAGE_ACCOUNT_SID&#x27;</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//账户授权令牌, 在控制台中即可获取此参数</span></span><br><span class="line">    <span class="string">&#x27;auth_token&#x27;</span> =&gt;  env(<span class="string">&#x27;CLOUD_MESSAGE_AUTH_TOKEN&#x27;</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//应用id</span></span><br><span class="line">    <span class="string">&#x27;app_id&#x27;</span> =&gt;  env(<span class="string">&#x27;CLOUD_MESSAGE_APP_ID&#x27;</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//来电显示的号码（需要去申请开通号码）</span></span><br><span class="line">    <span class="string">&#x27;caller&#x27;</span> =&gt; env(<span class="string">&#x27;CLOUD_MESSAGE_CALLER&#x27;</span>, <span class="string">&#x27;057112345678&#x27;</span>),</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 <p>调用</p>
-<pre><code>$cloudMessage = new CloudMessage();
-$result = $cloudMessage-&gt;sendVoiceNotify(&quot;13560710913&quot;, &quot;服务器异常警告&quot;);
-if($result &amp;&amp; $result[&#39;resp&#39;][&#39;respCode&#39;] == &#39;000000&#39;)&#123;
-    //成功
-&#125;else&#123;
-    //失败, error_code: $result[&#39;resp&#39;][&#39;respCode&#39;]
-&#125;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cloudMessage</span> = <span class="keyword">new</span> CloudMessage();</span><br><span class="line"><span class="variable">$result</span> = <span class="variable">$cloudMessage</span>-&gt;sendVoiceNotify(<span class="string">&quot;13560710913&quot;</span>, <span class="string">&quot;服务器异常警告&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$result</span> &amp;&amp; <span class="variable">$result</span>[<span class="string">&#x27;resp&#x27;</span>][<span class="string">&#x27;respCode&#x27;</span>] == <span class="string">&#x27;000000&#x27;</span>)&#123;</span><br><span class="line">    <span class="comment">//成功</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//失败, error_code: $result[&#x27;resp&#x27;][&#x27;respCode&#x27;]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
         </div>
 
