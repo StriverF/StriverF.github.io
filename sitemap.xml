@@ -249,13 +249,6 @@
   </url>
   
   <url>
-    <loc>https://www.patpat.site/tags/OC/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.patpat.site/tags/ios/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
@@ -333,21 +326,7 @@
   </url>
   
   <url>
-    <loc>https://www.patpat.site/tags/nginx/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.patpat.site/tags/ssl/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.patpat.site/tags/ECS/</loc>
+    <loc>https://www.patpat.site/tags/OC/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -389,6 +368,27 @@
   </url>
   
   <url>
+    <loc>https://www.patpat.site/tags/nginx/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.patpat.site/tags/ssl/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.patpat.site/tags/ECS/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.patpat.site/tags/webpack/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
@@ -404,6 +404,13 @@
   
   <url>
     <loc>https://www.patpat.site/tags/ssr/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.patpat.site/tags/plugin/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -438,7 +445,7 @@
   </url>
   
   <url>
-    <loc>https://www.patpat.site/tags/plugin/</loc>
+    <loc>https://www.patpat.site/tags/autolayout/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -453,20 +460,6 @@
   
   <url>
     <loc>https://www.patpat.site/tags/Node/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.patpat.site/tags/autolayout/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.patpat.site/tags/%E7%83%AD%E7%82%B9%E6%B5%81%E9%87%8F/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -488,6 +481,13 @@
   
   <url>
     <loc>https://www.patpat.site/tags/%E4%B9%9D%E5%9E%8B%E4%BA%BA%E6%A0%BC/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.patpat.site/tags/%E7%83%AD%E7%82%B9%E6%B5%81%E9%87%8F/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -573,14 +573,14 @@
   </url>
   
   <url>
-    <loc>https://www.patpat.site/categories/%E7%A4%BE%E4%BC%9A/</loc>
+    <loc>https://www.patpat.site/categories/%E7%94%9F%E6%B4%BB/%E9%98%85%E8%AF%BB/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.patpat.site/categories/%E7%94%9F%E6%B4%BB/%E9%98%85%E8%AF%BB/</loc>
+    <loc>https://www.patpat.site/categories/%E7%A4%BE%E4%BC%9A/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
