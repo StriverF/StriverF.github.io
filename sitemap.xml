@@ -249,6 +249,13 @@
   </url>
   
   <url>
+    <loc>https://www.patpat.site/tags/OC/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.patpat.site/tags/ios/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
@@ -277,27 +284,6 @@
   </url>
   
   <url>
-    <loc>https://www.patpat.site/tags/OC/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.patpat.site/tags/singleSPA/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.patpat.site/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2021-04-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.patpat.site/tags/payment/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
@@ -313,6 +299,20 @@
   
   <url>
     <loc>https://www.patpat.site/tags/android/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.patpat.site/tags/singleSPA/</loc>
+    <lastmod>2021-04-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.patpat.site/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/</loc>
     <lastmod>2021-04-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
