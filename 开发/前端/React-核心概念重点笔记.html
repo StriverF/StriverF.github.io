@@ -228,12 +228,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.4k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.6k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>9 分钟</span>
         </span>
     
     
@@ -334,13 +334,17 @@
 <li>循环列表都需要给子节点指定key，不然会报警告。</li>
 <li>都支持路由懒加载，Webpack分割代码块。</li>
 <li>都支持SSR，并都有各自的服务端渲染框架 Vue(Nuxt), React(Next)</li>
+<li>React 和 Vue运行时性能都是非常快</li>
+<li>Vue 和 React 都提供了强大的路由来应对大型应用</li>
 </ol>
 <h1 id="Vue和React的核心概念差异"><a href="#Vue和React的核心概念差异" class="headerlink" title="Vue和React的核心概念差异"></a>Vue和React的核心概念差异</h1><ol>
 <li>vue局部状态支持双向绑定，React局部状态是’单向’的数据流，并且是自上而下的。</li>
 <li>Vue局部状态支持直接=’value’等于号赋值更新状态，React必须通过setState()函数（有点类似<a class="link"   target="_blank" rel="noopener" href="https://vuex.vuejs.org/api/#mutations" >Vuex<i class="fas fa-external-link-alt"></i></a>的<code>mutations</code>）</li>
-<li>Vue模板语法更贴合像<code>Html</code>, React的<code>jsx</code>语法更贴合js。</li>
+<li>Vue模板语法更贴合像<code>Html</code>, React的<code>jsx</code>语法更贴合js，并且vue也支持让你选择jsx的语法来编写组件。</li>
 <li>条件渲染的差别: Vue直接在模板中<code>v-if</code>(更直观), React还是真正的通过js语法<code>if</code>来判断接收组件变量插入到对应位置（更具逻辑性）</li>
 <li>Vue子组件需要声明props有哪些属性，React不需要，除了特殊的<code>key</code>关键属性不能在子组件props中获取。</li>
+<li>在 React 应用中，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。如要避免不必要的子组件的重渲染，你需要在所有可能的地方使用 PureComponent，或是手动实现 shouldComponentUpdate 方法。在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。Vue 的这个特点使得开发者不再需要考虑此类优化，从而能够更好地专注于应用本身。</li>
+<li>React Native原生渲染生态比Vue好</li>
 </ol>
 
         </div>
