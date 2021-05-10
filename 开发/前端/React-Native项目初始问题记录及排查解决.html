@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ios | spa | c++ | php | mysql | nginx | vue | swift">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Madman">
+    
+    <title>
+        
+            React Native项目初始问题记录及排查解决 |
+        
+        Madman 疯子
+    </title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"www.patpat.site","root":"/","language":"zh-CN","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":false},"style":{"primary_color":"#00CCCC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"300px","content_max_width":"1080px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"用户压根不知道自己需要什么，直到你把它摆在他面前。"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":false},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.1"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Madman 疯子
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                友链
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">友链</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">React Native项目初始问题记录及排查解决</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Madman</span>
+                        
+                            <span class="author-label">后端工程师</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-10 14:58:38
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%BC%80%E5%8F%91/">开发</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/ios/">ios</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/react/">react</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/pod/">pod</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><a class="link"   target="_blank" rel="noopener" href="https://reactnative.dev/" >React Native<i class="fas fa-external-link-alt"></i></a> 是现代一种生态活跃且成熟的跨平台解决方案，目前已经有很多大公司（FB, Tesla 等）正在使用React Native构建ios和安卓原生应用。那我们就来看看按照官方文档构建一个React Native有多简单。<br>我的环境配置：</p>
+<ul>
+<li>MacOS Big sur v11.2</li>
+<li>Node v15.12.0</li>
+<li>Cocoapods v1.8.4</li>
+<li>Xcode v12.5</li>
+<li>vsCode v1.56.0</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="创建项目React-Native"><a href="#创建项目React-Native" class="headerlink" title="创建项目React Native"></a>创建项目React Native</h1><p>按照官方文档，我们使用npx 脚本来创建React Native项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx react-native init MyTestApp</span><br></pre></td></tr></table></figure>
+<p>执行脚本前面是顺利的，项目也创建成功了，但是项目内部的ios项目模块的pod install按照失败了。报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">✖ Installing CocoaPods dependencies (this may take a few minutes)</span><br><span class="line">✖ Installing CocoaPods dependencies (this may take a few minutes)</span><br><span class="line">error Error: Failed to install CocoaPods dependencies for iOS project, which is required by this template.</span><br><span class="line">Please try again manually: &quot;cd .&#x2F;MyTestApp&#x2F;ios &amp;&amp; pod install&quot;.</span><br><span class="line">CocoaPods documentation: https:&#x2F;&#x2F;cocoapods.org&#x2F;</span><br></pre></td></tr></table></figure>
+<p>pod install 按照失败的原因可能就比较多了，我先查看了一下pod –version得到我的pod版本好是1.8.4</p>
+<p>然后我就进入项目的MyTestApp/ios目录，做过ios都知道这个目录下面就是一个oc代码的一个原生ios项目的结构，有.xcodeproj 还有一个Podfile文件。<br>因为我们pod install还没成功，所以还没有.xcworkspace文件。<br>我尝试直接在这个ios项目的目录下面直接执行 <code>pod install</code>，得到报错如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  ios pod install         </span><br><span class="line">Analyzing dependencies</span><br><span class="line"></span><br><span class="line">――― MARKDOWN TEMPLATE ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――</span><br><span class="line"></span><br><span class="line">### Command</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>/usr/local/Cellar/cocoapods/1.8.4/libexec/bin/pod install</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Report</span><br><span class="line"></span><br><span class="line">* What did you do?</span><br><span class="line"></span><br><span class="line">* What did you expect to happen?</span><br><span class="line"></span><br><span class="line">* What happened instead?</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### Stack</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>   CocoaPods : 1.8.4<br>        Ruby : ruby 2.6.3p62 (2019-04-16 revision 67580) [universal.x86_64-darwin20]<br>    RubyGems : 3.0.3<br>        Host : macOS 11.2 (20D64)<br>       Xcode : 12.5 (12E262)<br>         Git : git version 2.22.0<br>Ruby lib dir : /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib<br>Repositories : mafeng-bryant - git - <a class="link"   target="_blank" rel="noopener" href="https://github.com/mafeng-Bryant/Specs.git" >https://github.com/mafeng-Bryant/Specs.git<i class="fas fa-external-link-alt"></i></a> @ d5a4174277606abff4018d727701fdb8a3e3700a<br>               master - git - <a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/Specs.git" >https://github.com/CocoaPods/Specs.git<i class="fas fa-external-link-alt"></i></a> @ dc48fb42d4da9ff168194324f817416eea583a47<br>               pinterest - git - <a class="link"   href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;" >&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#x2e;&#x63;&#111;&#x6d;<i class="fas fa-external-link-alt"></i></a>:pinterest/ios-pdk.git @ dc22537d7634a2fef6dbefc6917723d46ad2adfe<br>               trunk - CDN - <a class="link"   target="_blank" rel="noopener" href="https://cdn.cocoapods.org/" >https://cdn.cocoapods.org/<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Plugins</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>cocoapods-deintegrate : 1.0.4<br>cocoapods-plugins     : 1.0.0<br>cocoapods-search      : 1.0.0<br>cocoapods-stats       : 1.1.0<br>cocoapods-trunk       : 1.4.1<br>cocoapods-try         : 1.1.0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Podfile</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;ruby</span><br><span class="line">require_relative &#39;..&#x2F;node_modules&#x2F;react-native&#x2F;scripts&#x2F;react_native_pods&#39;</span><br><span class="line">require_relative &#39;..&#x2F;node_modules&#x2F;@react-native-community&#x2F;cli-platform-ios&#x2F;native_modules&#39;</span><br><span class="line"></span><br><span class="line">platform :ios, &#39;10.0&#39;</span><br><span class="line"></span><br><span class="line">target &#39;MyTestApp&#39; do</span><br><span class="line">  config &#x3D; use_native_modules!</span><br><span class="line"></span><br><span class="line">  use_react_native!(</span><br><span class="line">    :path &#x3D;&gt; config[:reactNativePath],</span><br><span class="line">    # to enable hermes on iOS, change &#96;false&#96; to &#96;true&#96; and then install pods</span><br><span class="line">    :hermes_enabled &#x3D;&gt; false</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  target &#39;MyTestAppTests&#39; do</span><br><span class="line">    inherit! :complete</span><br><span class="line">    # Pods for testing</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  # Enables Flipper.</span><br><span class="line">  #</span><br><span class="line">  # Note that if you have use_frameworks! enabled, Flipper will not work and</span><br><span class="line">  # you should disable the next line.</span><br><span class="line">  use_flipper!()</span><br><span class="line"></span><br><span class="line">  post_install do |installer|</span><br><span class="line">    react_native_post_install(installer)</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="Error"><a href="#Error" class="headerlink" title="Error"></a>Error</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError - [Xcodeproj] Unknown object version.</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;xcodeproj-1.13.0&#x2F;lib&#x2F;xcodeproj&#x2F;project.rb:227:in &#96;initialize_from_file&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;xcodeproj-1.13.0&#x2F;lib&#x2F;xcodeproj&#x2F;project.rb:112:in &#96;open&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer&#x2F;analyzer.rb:1098:in &#96;block (2 levels) in inspect_targets_to_integrate&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer&#x2F;analyzer.rb:1097:in &#96;each&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer&#x2F;analyzer.rb:1097:in &#96;block in inspect_targets_to_integrate&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;user_interface.rb:64:in &#96;section&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer&#x2F;analyzer.rb:1092:in &#96;inspect_targets_to_integrate&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer&#x2F;analyzer.rb:106:in &#96;analyze&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer.rb:410:in &#96;analyze&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer.rb:234:in &#96;block in resolve_dependencies&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;user_interface.rb:64:in &#96;section&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer.rb:233:in &#96;resolve_dependencies&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;installer.rb:156:in &#96;install!&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;command&#x2F;install.rb:52:in &#96;run&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;claide-1.0.3&#x2F;lib&#x2F;claide&#x2F;command.rb:334:in &#96;run&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;lib&#x2F;cocoapods&#x2F;command.rb:52:in &#96;run&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;gems&#x2F;cocoapods-1.8.4&#x2F;bin&#x2F;pod:55:in &#96;&lt;top (required)&gt;&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;bin&#x2F;pod:23:in &#96;load&#39;</span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;Cellar&#x2F;cocoapods&#x2F;1.8.4&#x2F;libexec&#x2F;bin&#x2F;pod:23:in &#96;&lt;main&gt;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――</p>
+<p>[!] Oh no, an error occurred.</p>
+<p>Search for existing GitHub issues similar to yours:<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/CocoaPods/search?q=%5BXcodeproj%5D+Unknown+object+version.&amp;type=Issues" >https://github.com/CocoaPods/CocoaPods/search?q=%5BXcodeproj%5D+Unknown+object+version.&amp;type=Issues<i class="fas fa-external-link-alt"></i></a></p>
+<p>If none exists, create a ticket, with the template displayed above, on:<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/CocoaPods/issues/new" >https://github.com/CocoaPods/CocoaPods/issues/new<i class="fas fa-external-link-alt"></i></a></p>
+<p>Be sure to first read the contributing guide for details on how to properly submit a ticket:<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md" >https://github.com/CocoaPods/CocoaPods/blob/master/CONTRIBUTING.md<i class="fas fa-external-link-alt"></i></a></p>
+<p>Don’t forget to anonymize any private data!</p>
+<p>Looking for related issues on cocoapods/cocoapods…</p>
+<ul>
+<li><p>[Xcodeproj] Unknown object version.  Help Please<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/CocoaPods/issues/10604" >https://github.com/CocoaPods/CocoaPods/issues/10604<i class="fas fa-external-link-alt"></i></a> [open] [2 comments]<br>a week ago</p>
+</li>
+<li><p>RuntimeError - [Xcodeproj] Unknown object version.<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/CocoaPods/issues/10259" >https://github.com/CocoaPods/CocoaPods/issues/10259<i class="fas fa-external-link-alt"></i></a> [closed] [7 comments]<br>2 weeks ago</p>
+</li>
+<li><p>RuntimeError - [Xcodeproj] Unknown object version<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/CocoaPods/CocoaPods/issues/10432" >https://github.com/CocoaPods/CocoaPods/issues/10432<i class="fas fa-external-link-alt"></i></a> [closed] [6 comments]<br>11 Mar 2021</p>
+</li>
+</ul>
+<p>and 59 more at:<br><a class="link"   target="_blank" rel="noopener" href="https://github.com/cocoapods/cocoapods/search?q=%5BXcodeproj%5D%20Unknown%20object%20version.&amp;type=Issues&amp;utf8=%E2%9C%93" >https://github.com/cocoapods/cocoapods/search?q=%5BXcodeproj%5D%20Unknown%20object%20version.&amp;type=Issues&amp;utf8=✓<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">让后根据错误提示找到GitHub的解决方案：https:&#x2F;&#x2F;github.com&#x2F;CocoaPods&#x2F;CocoaPods&#x2F;issues&#x2F;10604</span><br><span class="line">我执行如下命令</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>➜  ios gem uninstall xcodeproj<br>Gem ‘xcodeproj’ is not installed<br>➜  ios gem install xcodeproj<br>Fetching xcodeproj-1.19.0.gem<br>Fetching nanaimo-0.3.0.gem<br>ERROR:  While executing gem … (Gem::FilePermissionError)<br>    You don’t have write permissions for the /Library/Ruby/Gems/2.6.0 directory.<br>➜  ios gem install xcodeproj<br>ERROR:  While executing gem … (Gem::FilePermissionError)<br>    You don’t have write permissions for the /Library/Ruby/Gems/2.6.0 directory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在执行&#96;gem install xcodeproj&#96;报错了目录权限不够。按照我的常规懒习惯直接加&#96;sudo&#96;。</span><br></pre></td></tr></table></figure>
+<p>➜  ios sudo gem install xcodeproj<br>Password:<br>Fetching atomos-0.1.3.gem<br>Fetching claide-1.0.3.gem<br>Fetching xcodeproj-1.19.0.gem<br>Fetching colored2-3.1.2.gem<br>Fetching nanaimo-0.3.0.gem<br>Successfully installed atomos-0.1.3<br>Successfully installed claide-1.0.3<br>Successfully installed colored2-3.1.2<br>Successfully installed nanaimo-0.3.0<br>xcodeproj’s executable “xcodeproj” conflicts with /usr/local/bin/xcodeproj<br>Overwrite the executable? [yN]  y<br>Successfully installed xcodeproj-1.19.0<br>Parsing documentation for atomos-0.1.3<br>Installing ri documentation for atomos-0.1.3<br>Parsing documentation for claide-1.0.3<br>Installing ri documentation for claide-1.0.3<br>Parsing documentation for colored2-3.1.2<br>Installing ri documentation for colored2-3.1.2<br>Parsing documentation for nanaimo-0.3.0<br>Installing ri documentation for nanaimo-0.3.0<br>Parsing documentation for xcodeproj-1.19.0<br>Installing ri documentation for xcodeproj-1.19.0<br>Done installing documentation for atomos, claide, colored2, nanaimo, xcodeproj after 1 seconds<br>5 gems installed</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">问题解决，现在终于可以愉快的&#96;pod install&#96;了吧？</span><br><span class="line">不幸的是，还是报错如下，pod版本不够，OpenSSL-Universal这个依赖需要&#96;&gt;&#x3D; 1.9&#96;的版本号</span><br></pre></td></tr></table></figure>
+<p>➜  ios pod install<br>Analyzing dependencies<br>Fetching podspec for <code>DoubleConversion</code> from <code>../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec</code><br>Fetching podspec for <code>RCT-Folly</code> from <code>../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec</code><br>Fetching podspec for <code>glog</code> from <code>../node_modules/react-native/third-party-podspecs/glog.podspec</code><br>[!] <code>OpenSSL-Universal</code> requires CocoaPods version <code>&gt;= 1.9</code>, which is not satisfied by your current version, <code>1.8.4</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">那我就只能把pod 升级了。注意，pod 升级不是 &#96;pod update&#96; 这个是更新pod依赖库的版本好。我们现在需要更新&#96;Cocoapods&#96;这个软件本身的版本。</span><br><span class="line">我之前是用brew安装的Cocoapods, 那为了避免冲突，我还是用brew去升级这个Cocoapods软件。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>brew upgrade cocoapods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">更新Cocoapods版本到v1.10.1了，软件更新成功，使用 &#96;pod --version&#96;查看版本直接找不到pod这个命令&#96;zsh: command not found: pod&#96;。这种情况一般是软件引用链接没关联到zsh导致，看下面执行升级cocoapods命令时的报错：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Error: The <code>brew link</code> step did not complete successfully<br>The formula built, but is not symlinked into /usr/local<br>Could not symlink bin/xcodeproj<br>Target /usr/local/bin/xcodeproj<br>already exists. You may want to remove it:<br>  rm ‘/usr/local/bin/xcodeproj’</p>
+<p>To force the link and overwrite all conflicting files:<br>  brew link –overwrite cocoapods</p>
+<p>To list all files that would be deleted:<br>  brew link –overwrite –dry-run cocoapods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有文件冲突，和文件引用链接 没关联，按照报错提升执行，先删除冲突文件。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>rm ‘/usr/local/bin/xcodeproj’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后强制brew link关联软件引用路径。</span><br></pre></td></tr></table></figure>
+<p>brew link –overwrite cocoapods</p>
+<pre><code>pod 版本更新成功看下图：
+![](https://cdn.patpat.site/mweb/16206319562213.jpg)
+
+这个时候回到React Native项目的ios目录执行 `pod install` pod 安装成功，如下图：
+![](https://cdn.patpat.site/mweb/16206320636718.jpg)
+
+模拟器上运行初始化好的项目效果如图
+![](https://cdn.patpat.site/mweb/16206333850630.jpg)
+</code></pre>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：React Native项目初始问题记录及排查解决</li>
+        <li>本文作者：Madman</li>
+        <li>创建时间：2021-05-10 14:58:38</li>
+        <li>
+            本文链接：https://www.patpat.site/开发/前端/React-Native项目初始问题记录及排查解决.html
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF/%E5%BE%AE%E5%89%8D%E7%AB%AFqiankun-AntDesign%E7%BB%84%E4%BB%B6%E5%BA%93%E5%AE%9E%E7%8E%B0%E4%B8%9A%E5%8A%A1%E6%A8%A1%E5%BD%BB%E5%BA%95%E8%A7%A3%E8%80%A6.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">微前端qiankun+AntDesign组件库实现业务模块彻底解耦</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+    <div class="valine-container">
+        <script data-pjax
+                src="//cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script>
+        <div id="vcomments"></div>
+        <script data-pjax>
+            function loadValine() {
+                new Valine({
+                    el: '#vcomments',
+                    appId: '7kPNibOXTfqkHbkOuLBirqnq-gzGzoHsz',
+                    appKey: 'mu1fB5tPL5UJ6D8VXTUCgVTa',
+                    meta: ['nick', 'mail', 'link'],
+                    avatar: 'wavatar',
+                    enableQQ: true,
+                    placeholder: '请说出你的故事',
+                    lang: 'zh-CN'.toLowerCase()
+                });
+
+                function getAuthor(language) {
+                    switch (language) {
+                        case 'en':
+                            return 'Author';
+                        case 'zh-CN':
+                            return '博主';
+                        default:
+                            return 'Master';
+                    }
+                }
+
+                // Add "Author" identify
+                const getValineDomTimer = setInterval(() => {
+                    const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                    if (vcards.length > 0) {
+                        let author = 'Madman';
+
+                        if (author) {
+                            for (let vcard of vcards) {
+                                const vnick_dom = vcard.querySelector('.vhead .vnick');
+                                const vnick = vnick_dom.innerHTML;
+                                if (vnick === author) {
+                                    vnick_dom.innerHTML = `${vnick} <span class="author">${getAuthor(KEEP.hexo_config.language)}</span>`
+                                }
+                            }
+                        }
+                        clearInterval(getValineDomTimer);
+                    } else {
+                        clearInterval(getValineDomTimer);
+                    }
+                }, 2000);
+            }
+
+            if ('true') {
+                const loadValineTimeout = setTimeout(() => {
+                    loadValine();
+                    clearTimeout(loadValineTimeout);
+                }, 1000);
+            } else {
+                window.addEventListener('DOMContentLoaded', loadValine);
+            }
+        </script>
+    </div>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2015</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Madman</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        
+        
+            <div class="icp-info info-item"><a target="_blank" rel="nofollow" href="https://beian.miit.gov.cn">粤ICP备18149602号</a></div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AEReact-Native"><span class="nav-text">创建项目React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error"><span class="nav-text">Error</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/code-copy.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/toc.js"></script>
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
